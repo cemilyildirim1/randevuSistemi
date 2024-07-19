@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/randevuOlusturFragment">
+
+    <fragment
+        android:id="@+id/randevuOlusturFragment"
+        android:name="com.cemilyildirim.randevuislemleri.RandevuOlusturFragment"
+        android:label="fragment_randevu_olustur"
+        tools:layout="@layout/fragment_randevu_olustur" />
+    <fragment
+        android:id="@+id/randevularimFragment"
+        android:name="com.cemilyildirim.randevuislemleri.RandevularimFragment"
+        android:label="fragment_randevularim"
+        tools:layout="@layout/fragment_randevularim" />
+</navigation>
