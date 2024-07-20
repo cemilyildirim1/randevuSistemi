@@ -1,12 +1,14 @@
 package com.cemilyildirim.randevuislemleri
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cemilyildirim.randevuislemleri.databinding.FragmentRandevuOlusturBinding
 import com.cemilyildirim.randevuislemleri.view.service.DataAPI
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,18 +58,14 @@ class RandevuOlusturFragment : Fragment() {
             .build()
             .create(DataAPI::class.java)
 
+        //hilt retrofit tutorial
+        //view model implementation
+
         CoroutineScope(Dispatchers.IO).launch(){
             val veriler = retrofit.getData()
-            veriler.forEach(){
-//                println(it.logURL)
-//                binding.textView.text = it.logURL
-            }
+            println(veriler.result)
         }
-
-
-
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

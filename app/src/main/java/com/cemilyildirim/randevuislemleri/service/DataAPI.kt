@@ -10,7 +10,7 @@ interface DataAPI {
     //END POİNT -> bydevelopertr/versionproject/master/menu.json
 
     @GET("bydevelopertr/versionproject/master/menu.json")
-    fun getData() : List<RandevuIslemleriVerileri>
+    suspend fun getData() :RandevuIslemleriVerileri
 
 
 }

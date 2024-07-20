@@ -1,4 +1,6 @@
 package com.cemilyildirim.randevuislemleri.view.model
+import com.cemilyildirim.randevuislemleri.model.Result
+
 
 data class RandevuIslemleriVerileri(
     val isMaintenance: Boolean,
@@ -8,24 +10,10 @@ data class RandevuIslemleriVerileri(
     val validationErrorMessages: Any? = null,
     val result: Result,
     val sid: String,
-    val requestID: String,
-    val logURL: String
-)
-data class Result (
-    val isSuccess: Boolean,
-    val message: Any? = null,
-    val explanation: Any? = null,
-    val errorCode: Any? = null,
-    val resultObject: List<ResultObject>,
-    val jobID: Any? = null,
-    val params: Params,
-    val requestContextID: String
+    val requestId: String,
+    val logUrl: String
 )
 
-class Params()
 
-data class ResultObject (
-    val key: Long,
-    val value: String,
-    val image: String
-)
+
+

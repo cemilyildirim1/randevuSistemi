@@ -9,8 +9,7 @@
         android:id="@+id/textRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
         android:layout_margin="8sp"
         android:text="TextView"
-        />
+        android:textSize="22sp" />
 </LinearLayout>
