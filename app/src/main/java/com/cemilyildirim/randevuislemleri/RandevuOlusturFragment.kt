@@ -1,23 +1,18 @@
 package com.cemilyildirim.randevuislemleri
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.cemilyildirim.randevuislemleri.adapter.RandevuAdapter
 import com.cemilyildirim.randevuislemleri.databinding.FragmentRandevuOlusturBinding
-import com.cemilyildirim.randevuislemleri.view.service.DataAPI
-import com.google.gson.Gson
+import com.cemilyildirim.randevuislemleri.repoPattern.VeriCekme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
-import kotlin.collections.forEach
-import kotlin.jvm.java
+import kotlinx.coroutines.withContext
 
 
 class RandevuOlusturFragment : Fragment() {
@@ -41,30 +36,44 @@ class RandevuOlusturFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.randevuOlusturButton.isEnabled = false
+        binding.randevuOlusturRecyclerView.layoutManager = LinearLayoutManager(context)
+        val veriCekme = VeriCekme()
 
-        val deneme = OkHttpClient.Builder()
-
-            .readTimeout(60, TimeUnit.SECONDS)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
-            .build()
-//            .retryOnConnection
-
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(deneme as OkHttpClient)
-            .build()
-            .create(DataAPI::class.java)
-
-        //hilt retrofit tutorial
-        //view model implementation
-
-        CoroutineScope(Dispatchers.IO).launch(){
-            val veriler = retrofit.getData()
-            println(veriler.result)
+        CoroutineScope(Dispatchers.Main).launch{
+            val response = withContext(Dispatchers.IO){veriCekme.veriCekme()}
+            val resultObject = response.result.resultObject
+            binding.randevuOlusturRecyclerView.adapter = RandevuAdapter(resultObject)
         }
+
+
+
+
+//        val deneme = OkHttpClient.Builder()
+//
+//            .readTimeout(60, TimeUnit.SECONDS)
+//            .connectTimeout(60, TimeUnit.SECONDS)
+//            .writeTimeout(60, TimeUnit.SECONDS)
+//            .build()
+////            .retryOnConnection
+//
+//
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("https://raw.githubusercontent.com/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(deneme as OkHttpClient)
+//            .build()
+//            .create(DataAPI::class.java)
+//
+//        //hilt retrofit tutorial
+//        //view model implementation
+//
+//        CoroutineScope(Dispatchers.IO).launch(){
+//            val veriler = retrofit.getData()
+//            println(veriler.result)
+//            binding.textView.setText(veriler.errorCode.toString())
+//        }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
