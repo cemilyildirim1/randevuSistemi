@@ -12,6 +12,7 @@ import kotlin.jvm.java
 
 
 class VeriCekme {
+
     private val client = OkHttpClient.Builder()
         .readTimeout(60, TimeUnit.SECONDS)
         .connectTimeout(60, TimeUnit.SECONDS)

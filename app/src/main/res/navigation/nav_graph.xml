@@ -7,12 +7,20 @@
 
     <fragment
         android:id="@+id/randevuOlusturFragment"
-        android:name="com.cemilyildirim.randevuislemleri.RandevuOlusturFragment"
+        android:name="com.cemilyildirim.randevuislemleri.view.RandevuOlusturFragment"
         android:label="fragment_randevu_olustur"
-        tools:layout="@layout/fragment_randevu_olustur" />
+        tools:layout="@layout/fragment_randevu_olustur" >
+        <action
+            android:id="@+id/action_randevuOlusturFragment_to_randevularimFragment"
+            app:destination="@id/randevularimFragment" />
+    </fragment>
     <fragment
         android:id="@+id/randevularimFragment"
-        android:name="com.cemilyildirim.randevuislemleri.RandevularimFragment"
+        android:name="com.cemilyildirim.randevuislemleri.view.RandevularimFragment"
         android:label="fragment_randevularim"
-        tools:layout="@layout/fragment_randevularim" />
+        tools:layout="@layout/fragment_randevularim" >
+        <action
+            android:id="@+id/action_randevularimFragment_to_randevuOlusturFragment"
+            app:destination="@id/randevuOlusturFragment" />
+    </fragment>
 </navigation>
