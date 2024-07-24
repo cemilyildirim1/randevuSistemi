@@ -9,7 +9,10 @@ import com.cemilyildirim.randevuislemleri.databinding.FragmentRandevularimBindin
 import android.view.MotionEvent
 import android.view.PointerIcon
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RandevularimFragment : Fragment() {
     private var _binding: FragmentRandevularimBinding? = null
     private val binding get() = _binding!!
